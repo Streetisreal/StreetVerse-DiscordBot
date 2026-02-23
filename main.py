@@ -44,4 +44,8 @@ async def checkonline(ctx):
 async def mute(ctx, member: discord.Member, duration: int = 300):
     await member.timeout(discord.utils.utcnow() + datetime.timedelta(seconds=duration))
     await ctx.send(f"{member.mention} has been muted for {duration} seconds.")
+
+@bot.command()
+async def teedle(ctx):
+    await ctx.send("https://cdn.teedleyt.com/teedle.mp4")
 bot.run('Enter Token here')
