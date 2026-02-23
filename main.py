@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import datetime
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -39,4 +40,8 @@ async def checkonline(ctx):
             offline += 1
     await ctx.send(f"Online: {online} 🟢 | Offline: {offline} 🔴")
 
-bot.run('Insert Discord Bot Token Here.')
+@bot.command()
+async def mute(ctx, member: discord.Member, duration: int = 300):
+    await member.timeout(discord.utils.utcnow() + datetime.timedelta(seconds=duration))
+    await ctx.send(f"{member.mention} has been muted for {duration} seconds.")
+bot.run('Enter Token here')
